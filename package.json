@@ -1,0 +1,29 @@
+{
+  "name": "test-js-transpilers-and-eslint",
+  "license": "UNLICENSED",
+  "scripts": {
+    "lint": "eslint input.js -c ./config/.eslintrc.js",
+    "build": "run-p build:**",
+    "build:babel:progressive": "babel input.js --config-file ./config/.babelrc.progressive.js -o dist/babel.progressive.out.js",
+    "build:babel:conservative": "babel input.js --config-file ./config/.babelrc.conservative.js -o dist/babel.consevative.out.js",
+    "build:rollup": "rollup input.js --file dist/rollup.out.js --format iife",
+    "build:rollup-plugin-esbuild": "rollup input.js -c ./config/rollup-with-esbuild.config.js -o dist/rollup-plugin-esbuild.out.js",
+    "build:esbuild:default": "esbuild input.js --outfile=dist/esbuild.default.out.js",
+    "build:esbuild:es2017": "esbuild input.js --target=es2017 --outfile=dist/esbuild.es2017.out.js",
+    "build:typescript:default": "tsc input.js --allowJs --outfile dist/tsc.default.out.js",
+    "build:typescript:es2017": "tsc input.js --allowJs --target es2017 --outfile dist/tsc.es2017.out.js"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.8",
+    "@babel/eslint-parser": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "es-check": "^6.0.0",
+    "esbuild": "^0.13.4",
+    "eslint": "^8.0.0",
+    "npm-run-all": "^4.1.5",
+    "rollup": "^2.58.0",
+    "rollup-plugin-esbuild": "^4.5.0",
+    "typescript": "^4.4.4"
+  }
+}
